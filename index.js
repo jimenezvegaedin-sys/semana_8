@@ -1,3 +1,4 @@
+require('dotenv').config();
 const http = require('http');
 
 function requestController(req, res) {
@@ -6,4 +7,9 @@ function requestController(req, res) {
   res.end('Bienvenidos al curso');
 }
 
-http.createServer(requestController).listen(4000);
+const server = http.createServer(requestController);
+const PORT = process.env.PORT;
+
+server.listen(PORT, '0.0.0.0', function () {
+  console.log('Aplicacion corriendo en: ' + PORT);
+});
